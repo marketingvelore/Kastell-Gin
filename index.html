@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kastell Gin — Destilirano iz srpske istorije</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=1600&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1400&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1551024709-8f23befc548e?w=1400&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1527761939622-933423a4d9e8?w=1400&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1582106245687-a4c4e9ca4c83?w=800&q=80">
+
+<style>
+  :root {
+    --bg: #080705;
+    --bg2: #100e0b;
+    --bg3: #181410;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --copper: #b87333;
+    --cream: #f0e4cc;
+    --cream2: #d4c4a8;
+    --muted: #6b5d48;
+    --white: #faf6ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ===== LOADER ===== */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: var(--gold); letter-spacing: 0.3em;
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+  .loader-bar { width: 200px; height: 1px; background: var(--muted); margin-top: 2rem; position: relative; overflow: hidden; }
+  .loader-bar::after {
+    content: ''; position: absolute; left: -100%; top: 0;
+    width: 100%; height: 100%; background: var(--gold);
+    animation: load-slide 1.8s ease-in-out forwards;
+  }
+  @keyframes load-slide { to { left: 0; } }
+  @keyframes pulse-glow {
+    0%,100% { text-shadow: 0 0 20px rgba(201,168,76,0.3); }
+    50% { text-shadow: 0 0 50px rgba(201,168,76,0.8), 0 0 100px rgba(201,168,76,0.3); }
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1.2rem 4%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+    background: rgba(8,7,5,0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    /* Fix mobile fixed positioning */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: background;
+  }
+  nav.home-transparent {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(8,7,5,0.97) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15) !important;
+    padding: 0.8rem 4%;
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif; font-size: 1.3rem;
+    color: var(--gold); letter-spacing: 0.15em; text-decoration: none;
+    flex-shrink: 0; cursor: pointer;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-links a {
+    color: var(--cream2); text-decoration: none;
+    font-family: 'Cinzel', serif; font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s;
+    position: relative; cursor: pointer;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+    background: var(--gold); transition: width 0.3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  /* Language switch lives outside the navbar entirely, floating just below it in the
+     top-right corner with clear breathing room — never touches the header itself. */
+  .lang-toggle {
+    position: fixed; top: 96px; right: 4%; z-index: 950;
+    display: flex; align-items: center; gap: 0.4rem;
+    background: rgba(8,7,5,0.85); border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 30px; padding: 0.5rem 1rem; cursor: pointer;
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--gold); transition: all 0.3s;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+  .lang-toggle:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+  .lang-toggle svg { flex-shrink: 0; }
+  @media (max-width: 480px) { .lang-toggle { top: 84px; right: 4%; padding: 0.45rem 0.85rem; } }
+  .hamburger {
+    display: none; flex-direction: column; gap: 6px; cursor: pointer;
+    background: none; border: none; padding: 10px;
+    -webkit-tap-highlight-color: transparent;
+    position: relative; width: 44px; height: 44px;
+    align-items: center; justify-content: center; z-index: 1100;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 1.5px; background: var(--gold);
+    transition: transform 0.35s ease, opacity 0.25s ease, top 0.35s ease;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .hamburger span:nth-child(1) { top: 13px; }
+  .hamburger span:nth-child(2) { top: 21px; }
+  .hamburger span:nth-child(3) { top: 29px; }
+  /* X state */
+  .hamburger.is-open span:nth-child(1) { top: 21px; transform: translateX(-50%) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .hamburger.is-open span:nth-child(3) { top: 21px; transform: translateX(-50%) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(8,7,5,0.99); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    -webkit-transform: translateZ(0); transform: translateZ(0);
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none; transition: color 0.3s; cursor: pointer;
+    padding: 0.5rem 1rem; -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-menu a:hover, .mobile-menu a:active { color: var(--gold); }
+  .mobile-close { display: none; }
+
+  /* ===== PAGE SYSTEM ===== */
+  .page { display: none; min-height: 100vh; overflow-x: hidden; max-width: 100%; }
+  .page.active { display: block; animation: page-enter 0.25s ease forwards; }
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  #page-home.active  { animation: page-home-in  0.3s ease forwards; }
+  #page-about.active { animation: page-left-in  0.25s ease forwards; }
+  #page-products.active { animation: page-right-in 0.25s ease forwards; }
+  #page-gallery.active { animation: page-zoom-in 0.25s ease forwards; }
+  #page-contact.active { animation: page-enter 0.25s ease forwards; }
+  @keyframes page-home-in {
+    from { opacity: 0; transform: scale(1.02); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes page-left-in {
+    from { opacity: 0; transform: translateX(-35px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes page-right-in {
+    from { opacity: 0; transform: translateX(35px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes page-zoom-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* ===== HERO ===== */
+  #page-home { min-height: unset; }
+  #hero {
+    height: 100vh; min-height: 700px; position: relative;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=1600&q=80');
+    background-size: cover; background-position: center;
+    filter: brightness(0.25) sepia(0.5);
+    transform: scale(1.05); animation: hero-zoom 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes hero-zoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center bottom, rgba(184,115,51,0.15) 0%, transparent 60%),
+                linear-gradient(to bottom, transparent 30%, rgba(8,7,5,0.7) 100%);
+  }
+  .particles { position: absolute; inset: 0; overflow: hidden; }
+  .particle {
+    position: absolute; width: 2px; height: 2px; background: var(--gold);
+    border-radius: 50%; animation: float-particle linear infinite; opacity: 0;
+    will-change: transform, opacity;
+  }
+  @keyframes float-particle {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; } 90% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+  }
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 900px; }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif; font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+    letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+    opacity: 0; animation: fade-up 1s 0.5s forwards;
+  }
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif; font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 0.95; color: var(--white); letter-spacing: 0.05em;
+    opacity: 0; animation: fade-up 1s 0.8s forwards;
+    text-shadow: 0 0 80px rgba(201,168,76,0.2);
+  }
+  .hero-title span {
+    color: var(--gold);
+    background: linear-gradient(100deg, var(--gold) 30%, var(--gold2) 40%, var(--white) 50%, var(--gold2) 60%, var(--gold) 70%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    animation: shimmer-text 6s ease-in-out infinite;
+  }
+  @keyframes shimmer-text {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-style: italic; font-weight: 300;
+    color: var(--cream2); margin-top: 1.5rem; opacity: 0; animation: fade-up 1s 1.1s forwards; letter-spacing: 0.05em;
+  }
+  .hero-line { width: 80px; height: 1px; background: var(--gold); margin: 2rem auto; opacity: 0; animation: fade-up 1s 1.3s forwards; }
+  .hero-cta { display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fade-up 1s 1.5s forwards; }
+  .btn-primary {
+    display: inline-block; padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--gold);
+    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.4s; position: relative; overflow: hidden; cursor: pointer; background: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--gold); transition: left 0.4s ease; z-index: -1;
+  }
+  .btn-primary:hover { color: var(--bg); }
+  .btn-primary:hover::before { left: 0; }
+  .btn-secondary {
+    display: inline-block; padding: 1rem 2.5rem;
+    border: 1px solid rgba(240,228,204,0.3); color: var(--cream2);
+    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.4s; cursor: pointer; background: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-secondary:hover { border-color: var(--cream); color: var(--white); }
+
+  @keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ===== SCROLL PROGRESS ===== */
+  #scrollProgress {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+    background: linear-gradient(90deg, var(--copper), var(--gold), var(--gold2));
+    z-index: 1200; transition: width 0.1s ease-out;
+    box-shadow: 0 0 8px rgba(201,168,76,0.6);
+  }
+
+  /* ===== GRAIN OVERLAY ===== */
+  #grain {
+    position: fixed; inset: 0; z-index: 8; pointer-events: none;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10500;
+    border-radius: 50%; transform: translate(-50%, -50%);
+    will-change: transform, opacity;
+  }
+  .cursor-dot { width: 5px; height: 5px; background: var(--gold); }
+  .cursor-ring {
+    width: 34px; height: 34px; border: 1px solid rgba(201,168,76,0.6);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+  .cursor-ring.grow { width: 60px; height: 60px; background: rgba(201,168,76,0.08); border-color: var(--gold); }
+  @media (hover: none), (pointer: coarse) {
+    .cursor-dot, .cursor-ring, #grain { display: none; }
+  }
+
+  /* ===== PAGE TRANSITION OVERLAY ===== */
+  #pageTransition {
+    position: fixed; inset: 0; z-index: 9500;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; opacity: 0;
+  }
+  #pageTransition .pt-panel {
+    position: absolute; inset: 0;
+    background: var(--bg);
+    transform: scaleY(0); transform-origin: bottom;
+  }
+  #pageTransition.animating .pt-panel { transform: scaleY(1); }
+  #pageTransition .pt-panel.pt-in { transform-origin: bottom; }
+  #pageTransition .pt-panel.pt-out { transform-origin: top; }
+  #pageTransition .pt-mark {
+    position: relative; z-index: 2; text-align: center;
+    opacity: 0; transform: scale(0.85);
+  }
+  #pageTransition .pt-glyph {
+    width: 52px; height: 52px; margin: 0 auto 1.1rem; color: var(--gold);
+    filter: drop-shadow(0 0 18px rgba(201,168,76,0.5));
+  }
+  #pageTransition .pt-glyph svg { width: 100%; height: 100%; }
+  #pageTransition .pt-word {
+    font-family: 'Cinzel Decorative', serif; letter-spacing: 0.35em;
+    font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--gold);
+  }
+  #pageTransition .pt-line {
+    width: 0; height: 1px; background: var(--gold); margin: 1rem auto 0;
+  }
+  #pageTransition.phase-in { pointer-events: all; opacity: 1; }
+  #pageTransition.phase-in .pt-panel { animation: pt-rise 0.55s cubic-bezier(.76,0,.24,1) forwards; }
+  #pageTransition.phase-in .pt-mark { animation: pt-mark-in 0.5s 0.15s cubic-bezier(.2,.9,.3,1) forwards; }
+  #pageTransition.phase-in .pt-line { animation: pt-line-grow 0.5s 0.25s ease forwards; }
+  #pageTransition.phase-out { pointer-events: all; opacity: 1; }
+  #pageTransition.phase-out .pt-panel { transform: scaleY(1); animation: pt-fall 0.55s cubic-bezier(.76,0,.24,1) forwards; }
+  #pageTransition.phase-out .pt-mark { animation: pt-mark-out 0.4s ease forwards; }
+  @keyframes pt-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes pt-fall { from { transform: scaleY(1); transform-origin: top; } to { transform: scaleY(0); transform-origin: top; } }
+  @keyframes pt-mark-in { from { opacity: 0; transform: scale(0.8) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes pt-mark-out { from { opacity: 1; } to { opacity: 0; transform: scale(0.92); } }
+  @keyframes pt-line-grow { from { width: 0; } to { width: 70px; } }
+
+  /* ===== MARQUEE BAND ===== */
+  .marquee-band { background: var(--gold); padding: 0.8rem 0; overflow: hidden; white-space: nowrap; }
+  .marquee-inner { display: inline-flex; gap: 3rem; animation: marquee 30s linear infinite; }
+  .marquee-inner span { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bg); }
+  .marquee-inner .dot { color: rgba(8,7,5,0.4); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ===== SECTION COMMONS ===== */
+  section { padding: clamp(4rem, 10vw, 8rem) 4%; }
+  .section-eyebrow { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: 1.5rem; }
+  .gold-line { width: 60px; height: 1px; background: var(--gold); margin-bottom: 2rem; }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 0; transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1);
+    will-change: opacity, transform;
+  }
+  .reveal { transform: translateY(36px); }
+  .reveal-left { transform: translateX(-48px); }
+  .reveal-right { transform: translateX(48px); }
+  .reveal-scale { transform: scale(0.92); }
+  .reveal.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
+    opacity: 1; transform: none;
+  }
+  .stagger.visible > * { transition-delay: calc(var(--i, 0) * 0.12s); }
+
+  /* ===== SECTION DIVIDER ===== */
+  .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 0 4%; }
+  .divider .divider-line { flex: 1; max-width: 140px; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5)); }
+  .divider .divider-line.right { background: linear-gradient(270deg, transparent, rgba(201,168,76,0.5)); }
+  .divider .divider-diamond { width: 8px; height: 8px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+  /* ===== PAGE HERO BAR ===== */
+  #page-about { background: var(--bg); }
+  .page-hero-bar {
+    min-height: 320px; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 0 4% 3rem;
+    padding-top: 100px; /* ensures title never hides under navbar */
+  }
+  .page-hero-bar-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    filter: brightness(0.2) sepia(0.6);
+    transform: scale(1.08); animation: hero-zoom 18s ease-in-out infinite alternate;
+  }
+  .page-hero-bar-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,7,5,1) 0%, transparent 60%);
+  }
+  .page-hero-bar h1 {
+    position: relative; z-index: 2;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    color: var(--white); letter-spacing: 0.08em;
+    line-height: 1.1;
+    opacity: 0; transform: translateY(24px);
+    animation: fade-up 0.9s 0.15s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .page-hero-bar h1 span { color: var(--gold); }
+
+  /* ===== ABOUT ===== */
+  .about-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-wrap { position: relative; padding: 2rem; }
+  .about-img-frame { position: absolute; inset: 0; border: 1px solid rgba(201,168,76,0.2); transform: translate(15px,15px); transition: transform 0.5s ease; }
+  .about-img-wrap:hover .about-img-frame { transform: translate(8px,8px); }
+  .about-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; filter: sepia(0.3) brightness(0.85); transition: filter 0.5s, transform 0.6s; }
+  .about-img-wrap:hover .about-img { filter: sepia(0) brightness(1); transform: scale(1.02); }
+  .about-year {
+    position: absolute; bottom: -1rem; right: -1rem;
+    background: var(--gold); font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem; color: var(--bg); padding: 1rem 1.5rem; font-weight: 700;
+  }
+  .about-text { padding: 1rem 0; }
+  .about-text p { color: var(--cream2); margin-bottom: 1.5rem; font-size: 1.05rem; font-weight: 300; }
+  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.15); }
+  .stat-num { font-family: 'Cinzel Decorative', serif; font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; }
+  .stat-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; display: block; }
+
+  /* Founders section */
+  .founders-section { background: var(--bg2); padding: clamp(4rem, 8vw, 6rem) 4%; }
+  .founders-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .founder-card { display: flex; flex-direction: column; gap: 1.5rem; }
+  .founder-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/5; }
+  .founder-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3) brightness(0.75); transition: filter 0.5s, transform 0.6s; }
+  .founder-img-wrap:hover img { filter: sepia(0) brightness(0.95); transform: scale(1.05); }
+  .founder-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--white); letter-spacing: 0.1em; }
+  .founder-role { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
+  .founder-bio { color: var(--cream2); font-weight: 300; font-size: 0.95rem; font-style: italic; line-height: 1.8; }
+  .founder-quote { border-left: 2px solid var(--gold); padding-left: 1.5rem; color: var(--cream2); font-style: italic; font-size: 1rem; font-weight: 300; }
+
+  /* Gin story extra section */
+  .gin-story-section { background: var(--bg2); }
+  .gin-story-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+  .gin-story-card { position: relative; overflow: hidden; aspect-ratio: 2/3; }
+  .gin-story-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) sepia(0.25); transition: transform 0.6s, filter 0.6s; }
+  .gin-story-card:hover img { transform: scale(1.06); filter: brightness(0.75) sepia(0); }
+  .gin-story-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,7,5,0.95) 0%, rgba(8,7,5,0.1) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+  }
+  .gin-story-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.5rem; }
+  .gin-story-card p { font-size: 0.9rem; color: var(--cream2); font-weight: 300; font-style: italic; }
+  .gin-story-num { font-family: 'Cinzel', serif; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.3em; margin-bottom: 0.8rem; }
+
+  /* ===== PRODUCTS ===== */
+  #page-products { background: var(--bg2); overflow-x: hidden; max-width: 100%; }
+  .products-header { text-align: center; max-width: 700px; margin: 0 auto 5rem; }
+  .products-header .gold-line { margin: 0 auto 2rem; }
+  .products-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .product-card { position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; background: var(--bg3); transition: transform 0.35s ease, box-shadow 0.35s ease; }
+  /* 3D tilt context only for devices with a real mouse — avoids mobile clipping/overflow quirks */
+  @media (hover: hover) and (pointer: fine) {
+    .products-grid { perspective: 1400px; }
+    .product-card { transform-style: preserve-3d; }
+  }
+  .product-card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.55); z-index: 3; }
+  .product-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.6) sepia(0.3); }
+  .product-card:hover img { transform: scale(1.08); filter: brightness(0.8) sepia(0); }
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,7,5,0.95) 0%, rgba(8,7,5,0.2) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; transition: background 0.4s;
+  }
+  .product-card:hover .product-overlay { background: linear-gradient(to top, rgba(8,7,5,0.98) 0%, rgba(8,7,5,0.6) 60%, rgba(8,7,5,0.2) 100%); }
+  .product-tag { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .product-name { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+  .product-desc { font-size: 0.85rem; color: var(--cream2); font-weight: 300; font-style: italic; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .product-card:hover .product-desc { max-height: 120px; }
+  .product-abv { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); margin-top: 0.8rem; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 0.8rem; }
+
+  /* Cocktail suggestions */
+  .cocktails-section { background: var(--bg); }
+  .cocktails-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  .cocktails-header .gold-line { margin: 0 auto 2rem; }
+  .cocktails-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .cocktail-card { background: var(--bg2); border: 1px solid rgba(201,168,76,0.1); padding: 0; overflow: hidden; transition: border-color 0.3s, transform 0.4s ease, box-shadow 0.4s ease; }
+  .cocktail-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); }
+  .cocktail-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: brightness(0.65) sepia(0.2); transition: filter 0.5s, transform 0.6s; display: block; }
+  .cocktail-card:hover .cocktail-img { filter: brightness(0.85) sepia(0); transform: scale(1.05); }
+  .cocktail-body { padding: 1.5rem; }
+  .cocktail-name { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .cocktail-base { font-size: 0.8rem; font-family: 'Cinzel', serif; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.8rem; }
+  .cocktail-desc { font-size: 0.9rem; color: var(--cream2); font-weight: 300; font-style: italic; }
+
+  /* ===== GALLERY ===== */
+  #page-gallery { background: var(--bg2); }
+  .gallery-header { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
+  .gallery-header .gold-line { margin: 0 auto 2rem; }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 280px); gap: 3px;
+  }
+  .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s; filter: brightness(0.75) sepia(0.2); }
+  .gallery-item:hover img { transform: scale(1.07); filter: brightness(0.9) sepia(0); }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(8,7,5,0); transition: background 0.3s; display: flex; align-items: center; justify-content: center; }
+  .gallery-item:hover .gallery-overlay { background: rgba(8,7,5,0.3); }
+  .gallery-plus { color: var(--gold); font-size: 2rem; opacity: 0; transition: all 0.3s; transform: scale(0.5); }
+  .gallery-item:hover .gallery-plus { opacity: 1; transform: scale(1); }
+
+  /* Second gallery row */
+  .gallery-grid-2 { display: grid; grid-template-columns: repeat(3, 1fr); height: 300px; gap: 3px; margin-top: 3px; }
+  .gallery-grid-2 .gallery-item { height: 300px; }
+
+  /* ===== QUOTE BAND ===== */
+  .quote-band { background: var(--gold); padding: clamp(3rem, 6vw, 5rem) 4%; text-align: center; position: relative; overflow: hidden; }
+  .quote-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-style: italic; font-weight: 300; color: var(--bg); max-width: 800px; margin: 0 auto; line-height: 1.5; position: relative; z-index: 1; }
+  .quote-author { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(8,7,5,0.6); margin-top: 1.5rem; position: relative; z-index: 1; }
+
+  /* ===== CONTACT ===== */
+  #page-contact { background: var(--bg); }
+  .contact-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: stretch;
+  }
+  .contact-bottle-col {
+    position: relative; display: flex; flex-direction: column;
+    align-items: stretch; justify-content: stretch;
+    gap: 4px;
+  }
+  .contact-bottle-wrap {
+    width: 100%;
+    flex: 1;
+    min-height: 280px;
+    border: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-bottle-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,7,5,0.65) 0%, transparent 50%, rgba(8,7,5,0.25) 100%);
+    z-index: 1;
+  }
+  .contact-bottle-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(0.25) brightness(0.8);
+    transition: transform 0.8s ease, filter 0.6s ease;
+    display: block;
+  }
+  .contact-bottle-wrap:hover img { transform: scale(1.04); filter: sepia(0) brightness(0.95); }
+  .contact-bottle-label {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 2;
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold);
+    white-space: nowrap;
+  }
+  @media (max-width: 900px) {
+    .contact-bottle-col { display: none; }
+    .contact-grid { grid-template-columns: 1fr !important; max-width: 600px !important; }
+  }
+  .contact-info h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 1rem; margin-top: 2rem; }
+  .contact-info h3:first-child { margin-top: 0; }
+  .contact-info p, .contact-info a { color: var(--cream2); font-weight: 300; text-decoration: none; display: block; transition: color 0.3s; }
+  .contact-info a:hover { color: var(--gold); }
+  .social-links { display: flex; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  .social-link { display: flex; align-items: center; gap: 0.6rem; color: var(--cream2) !important; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.2); padding: 0.5rem 1rem; transition: all 0.3s !important; }
+  .social-link:hover { color: var(--gold) !important; border-color: var(--gold); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { position: relative; padding-top: 1.4rem; margin-bottom: 0.3rem; }
+  .form-group input, .form-group textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(201,168,76,0.4); color: var(--white); padding: 0.6rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1rem; outline: none; transition: border-color 0.3s; resize: none; }
+  .form-group textarea { min-height: 110px; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group label { position: absolute; top: 0; left: 0; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream2); transition: color 0.3s; pointer-events: none; }
+  .form-group input:focus ~ label, .form-group textarea:focus ~ label { color: var(--gold); }
+  .contact-map { margin-top: 3rem; border: 1px solid rgba(201,168,76,0.15); overflow: hidden; }
+  .contact-map iframe { width: 100%; height: 320px; border: none; filter: grayscale(0.6) invert(0.9) hue-rotate(180deg) brightness(0.85); display: block; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.6rem; }
+  .contact-icon { color: var(--gold); flex-shrink: 0; margin-top: 0.15rem; display: flex; }
+  .contact-icon svg { width: 16px; height: 16px; }
+  .contact-side-img { margin-top: 2.5rem; overflow: hidden; border: 1px solid rgba(201,168,76,0.15); position: relative; flex: 1; min-height: 200px; }
+  .contact-side-img img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.35) brightness(0.7); display: block; transition: filter 0.6s, transform 0.6s; }
+  .contact-side-img:hover img { filter: sepia(0) brightness(0.9); transform: scale(1.04); }
+  .contact-side-img-label { position: absolute; bottom: 1.2rem; left: 1.5rem; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--bg); border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 2rem 4%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.15em; cursor: pointer; }
+  .footer-copy { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--muted); text-align: center; }
+  .footer-age { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--muted); text-align: right; }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(8,7,5,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox-stage { position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; opacity: 0; transform: scale(0.94); transition: opacity 0.35s ease, transform 0.35s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+  .lightbox img.show { opacity: 1; transform: scale(1); }
+  .lightbox-close { position: absolute; top: 2rem; right: 2rem; background: none; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .lightbox-close:hover { background: var(--gold); color: var(--bg); }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; border-radius: 50%; }
+  .lightbox-nav:hover { background: var(--gold); color: var(--bg); }
+  .lightbox-prev { left: -70px; }
+  .lightbox-next { right: -70px; }
+  .lightbox-counter { position: absolute; bottom: -2.4rem; left: 50%; transform: translateX(-50%); font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--gold); white-space: nowrap; }
+  @media (max-width: 900px) {
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
+    .lightbox-nav { width: 38px; height: 38px; }
+  }
+
+  /* ===== AGE GATE ===== */
+  #agegate { position: fixed; inset: 0; z-index: 10000; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; text-align: center; }
+  #agegate.hidden { display: none; }
+  .agegate-logo { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 6vw, 3.5rem); color: var(--gold); margin-bottom: 1rem; letter-spacing: 0.2em; }
+  .agegate-line { width: 80px; height: 1px; background: var(--gold); margin: 1rem auto 2rem; }
+  .agegate-text { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream2); margin-bottom: 2.5rem; max-width: 400px; line-height: 2; }
+  .agegate-btns { display: flex; gap: 1.5rem; }
+  .age-yes, .age-no { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; padding: 1rem 2.5rem; cursor: pointer; border: none; transition: all 0.3s; }
+  .age-yes { background: var(--gold); color: var(--bg); }
+  .age-yes:hover { background: var(--gold2); }
+  .age-no { background: transparent; color: var(--muted); border: 1px solid rgba(107,93,72,0.4); }
+  .age-no:hover { border-color: var(--muted); }
+  .agegate-footer { position: absolute; bottom: 2rem; font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; color: rgba(107,93,72,0.6); text-transform: uppercase; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-wrap { max-width: 400px; margin: 0 auto; width: 100%; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .cocktails-grid { grid-template-columns: 1fr 1fr; }
+    .cocktails-grid .cocktail-card:last-child { display: none; }
+    .founders-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; gap: 3rem; }
+    .gin-story-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+    .gin-story-card { aspect-ratio: 16/9; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { gap: 2rem; }
+    .products-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; height: 250px; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-item { height: 180px; }
+    .gallery-grid-2 { grid-template-columns: 1fr; height: auto; }
+    .gallery-grid-2 .gallery-item { height: 200px; }
+    .cocktails-grid { grid-template-columns: 1fr; }
+    .cocktails-grid .cocktail-card:last-child { display: block; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-age { text-align: center; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); }
+    .page-hero-bar { min-height: 220px; padding-top: 80px; padding-bottom: 2rem; }
+    /* Product name always visible on mobile */
+    .product-desc { max-height: 80px; }
+    /* Cocktails always show last one */
+    .cocktails-grid .cocktail-card:last-child { display: block; }
+  }
+  @media (max-width: 480px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .agegate-btns { flex-direction: column; }
+    .products-grid { max-width: 100%; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0.9rem 4%; }
+    .nav-logo { font-size: 1.1rem; }
+    /* On mobile product cards show name/desc always */
+    .product-overlay {
+      background: linear-gradient(to top, rgba(8,7,5,0.97) 0%, rgba(8,7,5,0.5) 55%, rgba(8,7,5,0.1) 100%);
+    }
+    .product-desc { max-height: 100px; }
+    .page-hero-bar { min-height: 200px; padding-top: 80px; }
+    .page-hero-bar h1 { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+  }
+
+  /* Mobile performance: reduce heavy animations */
+  @media (max-width: 768px) {
+    .hero-bg { animation: none; transform: scale(1.05); }
+    .marquee-inner { animation-duration: 20s; }
+    .page-hero-bar-bg { animation: none; transform: scale(1.05); }
+  }
+  /* Prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<script>
+  /* Critical functions needed immediately by inline onclick handlers */
+  function enterSite() {
+    document.getElementById('agegate').classList.add('hidden');
+    sessionStorage.setItem('ageVerified', '1');
+    setTimeout(function() {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2000);
+  }
+  function denyAccess() {
+    document.getElementById('agegate').innerHTML = '<div style="font-family:Cinzel,serif;color:#6b5d48;text-align:center;font-size:0.8rem;letter-spacing:0.2em;">Žao nam je. Morate biti punoletni da biste posetili ovaj sajt.<br><br>We\'re sorry. You must be of legal age to visit this site.</div>';
+  }
+
+  /* ===== PAGE TRANSITION (full-screen curtain + logo) ===== */
+  var _ptBusy = false;
+  function goTo(pageId) {
+    if (_ptBusy) return;
+    var current = document.querySelector('.page.active');
+    if (current && current.id === 'page-' + pageId) return;
+    var overlay = document.getElementById('pageTransition');
+    if (!overlay) { _reallyGoTo(pageId); return; }
+    _ptBusy = true;
+    overlay.className = 'phase-in';
+    overlay.querySelector('.pt-panel').className = 'pt-panel pt-in';
+    setTimeout(function() {
+      _reallyGoTo(pageId);
+      overlay.className = 'phase-out';
+      overlay.querySelector('.pt-panel').className = 'pt-panel pt-out';
+      setTimeout(function() {
+        overlay.className = '';
+        _ptBusy = false;
+      }, 480);
+    }, 560);
+  }
+  function _reallyGoTo(pageId) {
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    var target = document.getElementById('page-' + pageId);
+    if (target) { target.classList.add('active'); window.scrollTo({ top: 0, behavior: 'auto' }); }
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('data-page') === pageId);
+    });
+    var navbar = document.getElementById('navbar');
+    if (navbar) {
+      if (pageId === 'home') {
+        navbar.classList.add('home-transparent');
+        navbar.classList.remove('scrolled');
+      } else {
+        navbar.classList.remove('home-transparent');
+        navbar.classList.remove('scrolled');
+      }
+    }
+    setTimeout(triggerReveal, 60);
+    history.pushState({page: pageId}, '', '#' + pageId);
+    // Close mobile menu if open
+    closeMobile();
+  }
+  function openMobile()  {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('hamburgerBtn').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburgerBtn').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  var _lightboxImages = [];
+  var _lightboxIndex = 0;
+  function openLightbox(src) {
+    _lightboxImages = Array.prototype.map.call(document.querySelectorAll('.product-card img, .gallery-item img'), function(img){ return img.src; });
+    var idx = _lightboxImages.indexOf(src);
+    _lightboxIndex = idx >= 0 ? idx : 0;
+    _renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function _renderLightbox() {
+    var imgEl = document.getElementById('lightboxImg');
+    imgEl.classList.remove('show');
+    var src = _lightboxImages[_lightboxIndex] || imgEl.src;
+    setTimeout(function() {
+      imgEl.src = src;
+      imgEl.onload = function() { imgEl.classList.add('show'); };
+    }, 120);
+    var counter = document.getElementById('lightboxCounter');
+    if (counter && _lightboxImages.length) {
+      counter.textContent = (_lightboxIndex + 1) + ' / ' + _lightboxImages.length;
+    }
+  }
+  function lightboxNext() {
+    if (!_lightboxImages.length) return;
+    _lightboxIndex = (_lightboxIndex + 1) % _lightboxImages.length;
+    _renderLightbox();
+  }
+  function lightboxPrev() {
+    if (!_lightboxImages.length) return;
+    _lightboxIndex = (_lightboxIndex - 1 + _lightboxImages.length) % _lightboxImages.length;
+    _renderLightbox();
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightboxImg').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function toggleLang() {
+    var lang = window._lang = (window._lang === 'sr' ? 'en' : 'sr');
+    var btn = document.getElementById('langBtn');
+    btn.innerHTML = lang === 'sr'
+      ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> EN'
+      : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> SR';
+    document.documentElement.lang = lang === 'sr' ? 'sr' : 'en';
+    document.querySelectorAll('[data-sr]').forEach(function(el) {
+      var txt = el.getAttribute('data-' + lang);
+      if (txt) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = txt;
+        else el.innerHTML = txt;
+      }
+    });
+    document.getElementById('ag-text').textContent = lang === 'sr'
+      ? 'Da biste posetili ovaj sajt, morate biti punoletni.\nImate li 18 ili više godina?'
+      : 'To visit this site, you must be of legal drinking age.\nAre you 18 years of age or older?';
+    document.getElementById('ag-yes').textContent = lang === 'sr' ? 'Da, imam 18+' : 'Yes, I am 18+';
+    document.getElementById('ag-no').textContent  = lang === 'sr' ? 'Ne' : 'No';
+    document.getElementById('ag-footer').textContent = lang === 'sr'
+      ? 'Konzumirajte alkohol odgovorno · Molimo vas da pijete sa merom'
+      : 'Consume alcohol responsibly · Please drink in moderation';
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    var msg = document.getElementById('formMsg');
+    var lang = window._lang || 'sr';
+    msg.style.display = 'block';
+    msg.textContent = lang === 'sr' ? 'Hvala! Odgovorićemo uskoro.' : "Thank you! We'll reply soon.";
+    e.target.reset();
+    setTimeout(function(){ msg.style.display = 'none'; }, 4000);
+  }
+  /* ===== SCROLL REVEAL (IntersectionObserver) ===== */
+  var revealObserver = { observe: function(){} };
+  function triggerReveal() {
+    var els = document.querySelectorAll('.page.active .reveal, .page.active .reveal-left, .page.active .reveal-right, .page.active .reveal-scale');
+    els.forEach(function(el) { revealObserver.observe(el); });
+  }
+</script>
+</head>
+<body>
+
+<div style="display:none" aria-hidden="true">
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1400&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1551024709-8f23befc548e?w=1400&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1527761939622-933423a4d9e8?w=1400&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80" alt="">
+  <img src="https://images.unsplash.com/photo-1582106245687-a4c4e9ca4c83?w=800&q=80" alt="">
+</div>
+
+<!-- GRAIN + SCROLL PROGRESS + CUSTOM CURSOR -->
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- PAGE TRANSITION OVERLAY -->
+<div id="pageTransition">
+  <div class="pt-panel"></div>
+  <div class="pt-mark">
+    <div class="pt-glyph">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 6h16l3 10-9 8v28a2 2 0 0 1-2 2h-0a2 2 0 0 1-2-2V24l-9-8z"/>
+        <path d="M22 44h20"/>
+        <path d="M20 16h24"/>
+      </svg>
+    </div>
+    <div class="pt-word">KASTELL</div>
+    <div class="pt-line"></div>
+  </div>
+</div>
+
+<!-- AGE GATE -->
+<div id="agegate">
+  <div class="agegate-logo">KASTELL</div>
+  <div class="agegate-line"></div>
+  <p class="agegate-text" id="ag-text">Da biste posetili ovaj sajt, morate biti punoletni.<br>Imate li 18 ili više godina?</p>
+  <div class="agegate-btns">
+    <button class="age-yes" onclick="enterSite()" id="ag-yes">Da, imam 18+</button>
+    <button class="age-no" onclick="denyAccess()" id="ag-no">Ne</button>
+  </div>
+  <p class="agegate-footer" id="ag-footer">Konzumirajte alkohol odgovorno · Molimo vas da pijete sa merom</p>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">KASTELL</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobile()">✕</button>
+  <a onclick="goTo('home')" data-sr="Početna" data-en="Home">Početna</a>
+  <a onclick="goTo('about')" data-sr="O nama" data-en="About Us">O nama</a>
+  <a onclick="goTo('products')" data-sr="Džinovi" data-en="Gins">Džinovi</a>
+  <a onclick="goTo('gallery')" data-sr="Galerija" data-en="Gallery">Galerija</a>
+  <a onclick="goTo('contact')" data-sr="Kontakt" data-en="Contact">Kontakt</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-stage">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()" aria-label="Previous">‹</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNext()" aria-label="Next">›</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="home-transparent">
+  <span class="nav-logo" onclick="goTo('home')">KASTELL GIN</span>
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')" data-page="home" data-sr="Početna" data-en="Home">Početna</a></li>
+    <li><a onclick="goTo('about')" data-page="about" data-sr="O nama" data-en="About Us">O nama</a></li>
+    <li><a onclick="goTo('products')" data-page="products" data-sr="Džinovi" data-en="Gins">Džinovi</a></li>
+    <li><a onclick="goTo('gallery')" data-page="gallery" data-sr="Galerija" data-en="Gallery">Galerija</a></li>
+    <li><a onclick="goTo('contact')" data-page="contact" data-sr="Kontakt" data-en="Contact">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburgerBtn" onclick="document.getElementById('mobileMenu').classList.contains('open') ? closeMobile() : openMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- LANGUAGE SWITCH — floating in the page corner, independent of the navbar -->
+<button class="lang-toggle" onclick="toggleLang()" id="langBtn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+  EN
+</button>
+
+<!-- =================== PAGE: HOME =================== -->
+<div class="page active" id="page-home">
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-sr="Zanatski Džin iz Banja Luke" data-en="Craft Gin from Banja Luka">Zanatski Džin iz Banja Luke</p>
+      <h1 class="hero-title">KASTELL<br><span>GIN</span></h1>
+      <p class="hero-sub" data-sr="Destilirano iz strasti. Punjeno karakterom." data-en="Distilled from passion. Bottled with character.">Destilirano iz strasti. Punjeno karakterom.</p>
+      <div class="hero-line"></div>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="goTo('products')" data-sr="Otkrijte Džinove" data-en="Discover Our Gins">Otkrijte Džinove</button>
+        <button class="btn-secondary" onclick="goTo('about')" data-sr="O nama" data-en="About Us">O nama</button>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="marquee-band">
+    <div class="marquee-inner">
+      <span data-sr="Kraft Destilacija" data-en="Craft Distillation">Kraft Destilacija</span><span class="dot">✦</span>
+      <span data-sr="Srpske Botanike" data-en="Serbian Botanicals">Srpske Botanike</span><span class="dot">✦</span>
+      <span data-sr="Ručno Rađeno" data-en="Handcrafted">Ručno Rađeno</span><span class="dot">✦</span>
+      <span data-sr="Premium Džin" data-en="Premium Gin">Premium Džin</span><span class="dot">✦</span>
+      <span data-sr="Srpska Tradicija" data-en="Serbian Tradition">Srpska Tradicija</span><span class="dot">✦</span>
+      <span data-sr="Bakarni Kazan" data-en="Copper Still">Bakarni Kazan</span><span class="dot">✦</span>
+      <span data-sr="Kraft Destilacija" data-en="Craft Distillation">Kraft Destilacija</span><span class="dot">✦</span>
+      <span data-sr="Srpske Botanike" data-en="Serbian Botanicals">Srpske Botanike</span><span class="dot">✦</span>
+      <span data-sr="Ručno Rađeno" data-en="Handcrafted">Ručno Rađeno</span><span class="dot">✦</span>
+      <span data-sr="Premium Džin" data-en="Premium Gin">Premium Džin</span><span class="dot">✦</span>
+      <span data-sr="Srpska Tradicija" data-en="Serbian Tradition">Srpska Tradicija</span><span class="dot">✦</span>
+      <span data-sr="Bakarni Kazan" data-en="Copper Still">Bakarni Kazan</span><span class="dot">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- =================== PAGE: ABOUT =================== -->
+<div class="page" id="page-about">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80');"></div>
+    <div class="page-hero-bar-overlay"></div>
+    <h1 data-sr="<span>O</span> Nama" data-en="<span>About</span> Us"><span>O</span> Nama</h1>
+  </div>
+
+  <section id="about" style="background: var(--bg);">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-left">
+        <div class="about-img-frame"></div>
+        <img class="about-img"
+          src="https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80"
+          alt="Kastell Gin boca" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80'">
+        <div class="about-year">2024</div>
+      </div>
+      <div class="about-text reveal-right">
+        <span class="section-eyebrow" data-sr="Ko Smo Mi" data-en="Who We Are">Ko Smo Mi</span>
+        <h2 class="section-title" data-sr="Nastali iz ljubavi prema dobrom picu" data-en="Born from a love of good drink">Nastali iz ljubavi prema dobrom piću</h2>
+        <div class="gold-line"></div>
+        <p data-sr="Mi smo ekipa iz Banja Luke koja je jednog dana odlučila da ne čeka da neko drugi napravi savršen džin — i napravila ga sama. Kastell Gin je naš odgovor na pitanje: kako treba da izgleda džin koji nastaje ovdje, iz ove zemlje, od ovih ljudi?" data-en="We are a team from Banja Luka who one day decided not to wait for someone else to make the perfect gin — and made it themselves. Kastell Gin is our answer to the question: what should a gin look like that is born here, from this land, from these people?">
+          Mi smo ekipa iz Banja Luke koja je jednog dana odlučila da ne čeka da neko drugi napravi savršen džin — i napravila ga sama. Kastell Gin je naš odgovor na pitanje: kako treba da izgleda džin koji nastaje ovdje, iz ove zemlje, od ovih ljudi?
+        </p>
+        <p data-sr="Krenuli smo od nule — bez industrije iza leđa, bez velikih investitora, samo sa znanjem, upornošću i mnogo, mnogo probnih destilacija. Ime smo uzeli od tvrđave Kastel u centru Banje Luke — simbola koji stoji kroz vjekove, baš kao što i mi stojimo iza svakog poteza koji smo napravili." data-en="We started from scratch — without an industry behind us, without big investors, just knowledge, persistence and many, many trial distillations. We took the name from the Kastel fortress in the heart of Banja Luka — a symbol that has stood through centuries, just as we stand behind every decision we have made.">
+          Krenuli smo od nule — bez industrije iza leđa, bez velikih investitora, samo sa znanjem, upornošću i mnogo, mnogo probnih destilacija. Ime smo uzeli od tvrđave Kastel u centru Banje Luke — simbola koji stoji kroz vjekove, baš kao što i mi stojimo iza svakog poteza koji smo napravili.
+        </p>
+        <p data-sr="Danas su Kastell džinovi dostupni u barovima, restoranima i specijalizovanim prodavnicama širom regije. Ali za nas, svaka boca koja izađe iz naše destilerije i dalje je lična stvar." data-en="Today, Kastell gins are available in bars, restaurants and specialised stores throughout the region. But for us, every bottle that leaves our distillery is still a personal matter.">
+          Danas su Kastell džinovi dostupni u barovima, restoranima i specijalizovanim prodavnicama širom regije. Ali za nas, svaka boca koja izađe iz naše destilerije i dalje je lična stvar.
+        </p>
+        <div class="about-stats">
+          <div>
+            <span class="stat-num" data-count="12" data-suffix="+">0</span>
+            <span class="stat-label" data-sr="Botanike" data-en="Botanicals">Botanike</span>
+          </div>
+          <div>
+            <span class="stat-num" data-count="3">0</span>
+            <span class="stat-label" data-sr="Džina" data-en="Gins">Džina</span>
+          </div>
+          <div>
+            <span class="stat-num" data-count="100" data-suffix="%">0</span>
+            <span class="stat-label" data-sr="Ručna Izrada" data-en="Handcraft">Ručna Izrada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders / Team section -->
+  <section class="founders-section">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <span class="section-eyebrow" data-sr="Ljudi Iza Boce" data-en="People Behind the Bottle">Ljudi Iza Boce</span>
+      <h2 class="section-title" data-sr="Naš Tim" data-en="Our Team">Naš Tim</h2>
+      <div class="gold-line"></div>
+      <p style="color:var(--cream2);font-weight:300;max-width:650px;margin-bottom:3rem;" data-sr="Svaki džin priča priču svog tvorca. Ovo su ljudi koji su svoja znanja, ukuse i strast ulili u svaku kap Kastell džina." data-en="Every gin tells the story of its maker. These are the people who poured their knowledge, palate and passion into every drop of Kastell gin.">
+        Svaki džin priča priču svog tvorca. Ovo su ljudi koji su svoja znanja, ukuse i strast ulili u svaku kap Kastell džina.
+      </p>
+      <div class="founders-grid">
+        <div class="founder-card reveal-left">
+          <div class="founder-img-wrap">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80" alt="Osnivač" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80'">
+          </div>
+          <div>
+            <div class="founder-name" data-sr="Osnivači &amp; Destilatori" data-en="Founders &amp; Distillers">Osnivači &amp; Destilatori</div>
+            <div class="founder-role" data-sr="Vizija i Zanatstvo" data-en="Vision &amp; Craftsmanship">Vizija i Zanatstvo</div>
+            <p class="founder-bio" style="margin-top:1rem;" data-sr="Iza Kastell Gina stoji ekipa koja vjeruje da su lokalni resursi i tradicija dovoljni za stvaranje nečeg izuzetnog. Svaka sezona donosi novi uvid — u biljke, u okuse, u ono što džin može biti." data-en="Behind Kastell Gin stands a team that believes local resources and tradition are enough to create something exceptional. Every season brings new insight — into plants, into flavours, into what gin can be.">
+              Iza Kastell Gina stoji ekipa koja vjeruje da su lokalni resursi i tradicija dovoljni za stvaranje nečeg izuzetnog. Svaka sezona donosi novi uvid — u biljke, u okuse, u ono što džin može biti.
+            </p>
+          </div>
+        </div>
+        <div class="founder-card reveal-right">
+          <div style="padding: 1rem 0;">
+            <blockquote class="founder-quote" data-sr="„Džin nije samo piće — to je razgovor između destilera i onoga ko pije. Mi smo htjeli da taj razgovor bude iskren, lokalan i bez kompromisa."" data-en="&quot;Gin is not just a drink — it's a conversation between the distiller and the drinker. We wanted that conversation to be honest, local and uncompromising.&quot;">
+              „Džin nije samo piće — to je razgovor između destilera i onoga ko pije. Mi smo htjeli da taj razgovor bude iskren, lokalan i bez kompromisa."
+            </blockquote>
+            <p style="color:var(--muted);font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:2rem;">— Kastell Gin Tim</p>
+            <p class="founder-bio" data-sr="Destilerija se nalazi u srcu Banje Luke. Radimo u malim serijama, birajući ručno botanike iz lokalnih izvora — sa Zlatibora, sa srpskih livada, iz mediteranskih krajeva. Svaka serija je ograničena i numerisana." data-en="The distillery is in the heart of Banja Luka. We work in small batches, hand-selecting botanicals from local sources — from Zlatibor, from Serbian meadows, from Mediterranean regions. Each batch is limited and numbered.">
+              Destilerija se nalazi u srcu Banje Luke. Radimo u malim serijama, birajući ručno botanike iz lokalnih izvora — sa Zlatibora, sa srpskih livada, iz mediteranskih krajeva. Svaka serija je ograničena i numerisana.
+            </p>
+            <p class="founder-bio" style="margin-top:1rem;" data-sr="Naš mali bakarni kazan ne zna za prečice. Svaka destilacija traje koliko treba da traje — ni minute manje." data-en="Our small copper still knows no shortcuts. Every distillation takes as long as it needs to — not a minute less.">
+              Naš mali bakarni kazan ne zna za prečice. Svaka destilacija traje koliko treba da traje — ni minute manje.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gin-story-section" style="padding: 0;">
+    <div class="gin-story-grid">
+      <div class="gin-story-card reveal-scale">
+        <img loading="eager" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80" alt="Kastell Gin & Tonic" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80'">
+        <div class="gin-story-overlay">
+          <div class="gin-story-num">01</div>
+          <h3 data-sr="Okus koji govori" data-en="A flavour that speaks">Okus koji govori</h3>
+          <p data-sr="Kompleksan, višeslojan, pamtljiv. Svaki gutljaj otkriva nešto novo." data-en="Complex, layered, memorable. Every sip reveals something new.">Kompleksan, višeslojan, pamtljiv. Svaki gutljaj otkriva nešto novo.</p>
+        </div>
+      </div>
+      <div class="gin-story-card reveal-scale" style="transition-delay:0.15s">
+        <img loading="eager" src="https://images.unsplash.com/photo-1551024709-8f23befc548e?w=800&q=80" alt="Kokteli" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80'">
+        <div class="gin-story-overlay">
+          <div class="gin-story-num">02</div>
+          <h3 data-sr="Savršen u svakom obliku" data-en="Perfect in every form">Savršen u svakom obliku</h3>
+          <p data-sr="Neat, na ledu, u Tonik ili u koktelu — Kastell uvijek sijeva." data-en="Neat, on ice, in Tonic or a cocktail — Kastell always shines.">Neat, na ledu, u Tonik ili u koktelu — Kastell uvijek sijeva.</p>
+        </div>
+      </div>
+      <div class="gin-story-card reveal-scale" style="transition-delay:0.3s">
+        <img loading="eager" src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80" alt="Kastell Rosa" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80'">
+        <div class="gin-story-overlay">
+          <div class="gin-story-num">03</div>
+          <h3 data-sr="Tri karaktera" data-en="Three characters">Tri karaktera</h3>
+          <p data-sr="Original, Dark i Rosa — tri džina, tri priče, jedan standard izvrsnosti." data-en="Original, Dark and Rosa — three gins, three stories, one standard of excellence.">Original, Dark i Rosa — tri džina, tri priče, jedan standard izvrsnosti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =================== PAGE: PRODUCTS =================== -->
+<div class="page" id="page-products">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-bg" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=1400&q=80');"></div>
+    <div class="page-hero-bar-overlay"></div>
+    <h1 data-sr="<span>Kastell</span> Džinovi" data-en="<span>Kastell</span> Gins"><span>Kastell</span> Džinovi</h1>
+  </div>
+
+  <section id="products" style="background: var(--bg2);">
+    <div class="products-header reveal">
+      <span class="section-eyebrow" data-sr="Naša Kolekcija" data-en="Our Collection">Naša Kolekcija</span>
+      <h2 class="section-title" data-sr="Tri džina. Jedan karakter." data-en="Three gins. One character.">Tri džina. Jedan karakter.</h2>
+      <div class="gold-line"></div>
+      <p style="color:var(--cream2);font-weight:300;" data-sr="Svaki Kastell džin je posebna priča o okusu, aromi i zanatstvu. Odaberite svog favorita — ili probajte sva tri." data-en="Each Kastell gin is a unique story of flavour, aroma and craftsmanship. Choose your favourite — or try all three.">
+        Svaki Kastell džin je posebna priča o okusu, aromi i zanatstvu. Odaberite svog favorita — ili probajte sva tri.
+      </p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal tilt-card" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Kastell Original" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&q=80'">
+        <div class="product-overlay">
+          <span class="product-tag" data-sr="Originalni" data-en="Original">Originalni</span>
+          <div class="product-name">Kastell Original</div>
+          <div class="product-desc" data-sr="Klasičan London Dry stil. Srpska kleka, korijander, citrusna kora, lavanda. Čist, elegantan, savršen u Gin &amp; Toniku. Naš flagship koji sve počinje." data-en="Classic London Dry style. Serbian juniper, coriander, citrus peel, lavender. Clean, elegant, perfect in a Gin &amp; Tonic. Our flagship that starts it all.">Klasičan London Dry stil. Srpska kleka, korijander, citrusna kora, lavanda. Čist, elegantan, savršen u Gin &amp; Toniku. Naš flagship koji sve počinje.</div>
+          <div class="product-abv">42% ABV · 700ml</div>
+        </div>
+      </div>
+      <div class="product-card reveal tilt-card" style="transition-delay:0.2s" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1582106245687-a4c4e9ca4c83?w=800&q=80" alt="Kastell Dark" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&q=80'">
+        <div class="product-overlay">
+          <span class="product-tag" data-sr="Tamni" data-en="Dark">Tamni</span>
+          <div class="product-name">Kastell Dark</div>
+          <div class="product-desc" data-sr="Odležan u hrastovim buradima. Dubok okus začina, dima, tamnih šljiva i tamne čokolade. Za one koji vole džin sa karakterom i hrabrošću." data-en="Aged in oak barrels. Deep flavour of spice, smoke, dark plum and dark chocolate. For those who love gin with character and courage.">Odležan u hrastovim buradima. Dubok okus začina, dima, tamnih šljiva i tamne čokolade. Za one koji vole džin sa karakterom i hrabrošću.</div>
+          <div class="product-abv">46% ABV · 700ml</div>
+        </div>
+      </div>
+      <div class="product-card reveal tilt-card" style="transition-delay:0.4s" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Kastell Rosa" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80'">
+        <div class="product-overlay">
+          <span class="product-tag" data-sr="Roze" data-en="Rosé">Roze</span>
+          <div class="product-name">Kastell Rosa</div>
+          <div class="product-desc" data-sr="Nježna ružičasta boja, cvetni buket šumske jagode, ruže i maline. Voćan, svjež, romaničan. Savršen ljetni džin koji osvaja na prvi gutljaj." data-en="Delicate pink hue, floral bouquet of wild strawberry, rose and raspberry. Fruity, fresh, romantic. The perfect summer gin that wins you over on the first sip.">Nježna ružičasta boja, cvetni buket šumske jagode, ruže i maline. Voćan, svjež, romaničan. Savršen ljetni džin koji osvaja na prvi gutljaj.</div>
+          <div class="product-abv">40% ABV · 700ml</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cocktails-section">
+    <div class="cocktails-header reveal">
+      <span class="section-eyebrow" data-sr="Preporučeni Kokteli" data-en="Recommended Cocktails">Preporučeni Kokteli</span>
+      <h2 class="section-title" data-sr="Kastell u čaši" data-en="Kastell in the glass">Kastell u čaši</h2>
+      <div class="gold-line"></div>
+      <p style="color:var(--cream2);font-weight:300;" data-sr="Naši omiljeni načini da uživate u Kastell džinu — od klasičnog Gin &amp; Tonika do sofisticiranih koktelnih kreacija." data-en="Our favourite ways to enjoy Kastell gin — from the classic Gin &amp; Tonic to sophisticated cocktail creations.">
+        Naši omiljeni načini da uživate u Kastell džinu — od klasičnog Gin &amp; Tonika do sofisticiranih koktelnih kreacija.
+      </p>
+    </div>
+    <div class="cocktails-grid">
+      <div class="cocktail-card reveal">
+        <img loading="eager" class="cocktail-img" src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80" alt="Kastell G&T" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80'">
+        <div class="cocktail-body">
+          <div class="cocktail-base" data-sr="Kastell Original" data-en="Kastell Original">Kastell Original</div>
+          <div class="cocktail-name">Kastell G&T</div>
+          <p class="cocktail-desc" data-sr="50ml Kastell Original, premium tonik, led, kora limuna, grančica ruzmarina. Savršenstvo u jednostavnosti." data-en="50ml Kastell Original, premium tonic, ice, lemon peel, rosemary sprig. Perfection in simplicity.">50ml Kastell Original, premium tonik, led, kora limuna, grančica ruzmarina. Savršenstvo u jednostavnosti.</p>
+        </div>
+      </div>
+      <div class="cocktail-card reveal" style="transition-delay:0.2s">
+        <img loading="eager" class="cocktail-img" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80" alt="Dark Negroni" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&q=80'">
+        <div class="cocktail-body">
+          <div class="cocktail-base" data-sr="Kastell Dark" data-en="Kastell Dark">Kastell Dark</div>
+          <div class="cocktail-name">Kastell Negroni</div>
+          <p class="cocktail-desc" data-sr="40ml Kastell Dark, 20ml Campari, 20ml slatki vermut. Miješajte sa ledom, poslužite u čaši za Old Fashioned. Moćan i tajanstven." data-en="40ml Kastell Dark, 20ml Campari, 20ml sweet vermouth. Stir with ice, serve in an Old Fashioned glass. Powerful and mysterious.">40ml Kastell Dark, 20ml Campari, 20ml slatki vermut. Miješajte sa ledom, poslužite u čaši za Old Fashioned. Moćan i tajanstven.</p>
+        </div>
+      </div>
+      <div class="cocktail-card reveal" style="transition-delay:0.4s">
+        <img loading="eager" class="cocktail-img" src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80" alt="Rosa Spritz" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80'">
+        <div class="cocktail-body">
+          <div class="cocktail-base" data-sr="Kastell Rosa" data-en="Kastell Rosa">Kastell Rosa</div>
+          <div class="cocktail-name">Rosa Spritz</div>
+          <p class="cocktail-desc" data-sr="40ml Kastell Rosa, prosecco, mali splash sode, svježe maline i listić mente. Ljetni san u čaši." data-en="40ml Kastell Rosa, prosecco, small splash of soda, fresh raspberries and mint leaf. A summer dream in a glass.">40ml Kastell Rosa, prosecco, mali splash sode, svježe maline i listić mente. Ljetni san u čaši.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =================== PAGE: GALLERY =================== -->
+<div class="page" id="page-gallery">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-bg" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc548e?w=1400&q=80');"></div>
+    <div class="page-hero-bar-overlay"></div>
+    <h1 data-sr="<span>Kastell</span> Galerija" data-en="<span>Kastell</span> Gallery"><span>Kastell</span> Galerija</h1>
+  </div>
+
+  <section id="gallery" style="background: var(--bg2); padding-bottom: 0;">
+    <div class="gallery-header reveal">
+      <span class="section-eyebrow" data-sr="Vizuelni Svet" data-en="Visual World">Vizuelni Svet</span>
+      <h2 class="section-title" data-sr="Kastell u svim bojama" data-en="Kastell in every colour">Kastell u svim bojama</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal-scale tilt-card" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1551024709-8f23befc548e?w=1000&q=80" alt="Kastell kokteli" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80'">
+        <div class="gallery-overlay"><div class="gallery-plus">+</div></div>
+      </div>
+      <div class="gallery-item reveal-scale tilt-card" style="transition-delay:0.1s" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80" alt="Gin & Tonic" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80'">
+        <div class="gallery-overlay"><div class="gallery-plus">+</div></div>
+      </div>
+      <div class="gallery-item reveal-scale tilt-card" style="transition-delay:0.2s" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&q=80" alt="Koktel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1536599424071-0b215a388ba7?w=800&q=80'">
+        <div class="gallery-overlay"><div class="gallery-plus">+</div></div>
+      </div>
+      <div class="gallery-item reveal-scale tilt-card" style="transition-delay:0.3s" onclick="openLightbox(this.querySelector('img').src)">
+        <img loading="eager" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1000&q=80" alt="Kastell G&T" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&q=80'">
+        <div class="gallery-overlay"><div class="gallery-plus">+</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="quote-band reveal">
+    <p class="quote-text" data-sr="„Kastell nije samo džin — to je stav. Piće za ljude koji znaju šta hoće i ne pristaju na kompromis."" data-en="&quot;Kastell is not just a gin — it's an attitude. A drink for people who know what they want and don't settle for compromise.&quot;">"Kastell nije samo džin — to je stav. Piće za ljude koji znaju šta hoće i ne pristaju na kompromis."</p>
+    <p class="quote-author" data-sr="— Osnivači Kastell Gin" data-en="— Kastell Gin Founders">— Osnivači Kastell Gin</p>
+  </div>
+</div>
+
+<!-- =================== PAGE: CONTACT =================== -->
+<div class="page" id="page-contact">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-bg" style="background-image: url('https://images.unsplash.com/photo-1527761939622-933423a4d9e8?w=1400&q=80');"></div>
+    <div class="page-hero-bar-overlay"></div>
+    <h1 data-sr="<span>Kontakt</span>" data-en="<span>Contact</span>"><span>Kontakt</span></h1>
+  </div>
+
+  <section id="contact" style="background: var(--bg);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <span class="section-eyebrow reveal" data-sr="Budite u Kontaktu" data-en="Get In Touch">Budite u Kontaktu</span>
+      <h2 class="section-title reveal" data-sr="Kontaktirajte Nas" data-en="Contact Us">Kontaktirajte Nas</h2>
+      <div class="gold-line reveal"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <h3 data-sr="Pratite Nas" data-en="Follow Us">Pratite Nas</h3>
+        <div class="social-links">
+          <a href="https://www.instagram.com/kastellgin/" target="_blank" class="social-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/p/Kastellgin-61563280408732/" target="_blank" class="social-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+
+        <h3 data-sr="Adresa" data-en="Address">Adresa</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <p>Aleja Svetog Save 12<br>78000 Banja Luka<br>Bosna i Hercegovina</p>
+        </div>
+
+        <h3 data-sr="Telefon" data-en="Phone">Telefon</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.87a16 16 0 0 0 5.55 5.55l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z"/></svg>
+          </span>
+          <a href="tel:+38765123456">+387 65 123 456</a>
+        </div>
+
+        <h3 data-sr="Pišite Nam" data-en="Write to Us">Pišite Nam</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          <a href="mailto:info@kastellgin.com">info@kastellgin.com</a>
+        </div>
+
+        <h3 data-sr="Radno Vrijeme" data-en="Working Hours">Radno Vrijeme</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <p>Pon – Pet: 09:00 – 17:00<br>Sub: 10:00 – 14:00</p>
+        </div>
+
+        <h3 data-sr="Dostupnost" data-en="Availability">Dostupnost</h3>
+        <p data-sr="Kastell Gin dostupan je u odabranim barovima, restoranima i specijalizovanim prodavnicama u Banja Luci i širom regije." data-en="Kastell Gin is available in selected bars, restaurants and specialised stores in Banja Luka and throughout the region.">Kastell Gin dostupan je u odabranim barovima, restoranima i specijalizovanim prodavnicama u Banja Luci i širom regije.</p>
+
+        <div class="contact-map reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44912.03297553609!2d17.155162449999998!3d44.7721986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f05a26c11db35%3A0x8ae35a60e8a5a40e!2sBanja%20Luka%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sba!4v1710000000000!5m2!1sen!2sba"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Kastell Gin lokacija">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Desna kolona: slika boce -->
+      <div class="contact-bottle-col reveal-right">
+        <div class="contact-bottle-wrap">
+          <img src="https://images.unsplash.com/photo-1582106245687-a4c4e9ca4c83?w=800&q=80"
+               alt="Kastell Gin boca"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80'">
+        </div>
+        <div class="contact-bottle-wrap">
+          <img src="https://images.unsplash.com/photo-1560963689-b5682b6440f8?w=800&q=80"
+               alt="Kastell Gin"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80'">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER (always visible) -->
+<footer>
+  <div class="footer-logo" onclick="goTo('home')">KASTELL GIN</div>
+  <p class="footer-copy" data-sr="© 2024 Kastell Gin. Sva prava zadržana. Konzumirajte odgovorno." data-en="© 2024 Kastell Gin. All rights reserved. Drink responsibly.">© 2024 Kastell Gin. Sva prava zadržana. Konzumirajte odgovorno.</p>
+  <p class="footer-age" data-sr="18+ · Pijte Odgovorno" data-en="18+ · Drink Responsibly">18+ · Pijte Odgovorno</p>
+</footer>
+
+<script>
+  /* ===== PARTICLES — fewer on mobile ===== */
+  function createParticles() {
+    var container = document.getElementById('particles');
+    if (!container) return;
+    var isMobile = window.innerWidth <= 768;
+    var count = isMobile ? 8 : 25;
+    for (var i = 0; i < count; i++) {
+      var p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.width = (Math.random() * 3 + 1) + 'px';
+      p.style.height = (Math.random() * 3 + 1) + 'px';
+      p.style.animationDuration = (Math.random() * 8 + 6) + 's';
+      p.style.animationDelay = (Math.random() * 8) + 's';
+      p.style.opacity = (Math.random() * 0.5 + 0.2);
+      container.appendChild(p);
+    }
+  }
+  createParticles();
+
+  /* ===== SCROLL NAV — transparent only on home hero, solid everywhere else ===== */
+  window.addEventListener('scroll', function() {
+    var navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    var activePage = document.querySelector('.page.active');
+    if (activePage && activePage.id === 'page-home') {
+      if (window.scrollY > 80) {
+        navbar.classList.remove('home-transparent');
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.add('home-transparent');
+        navbar.classList.remove('scrolled');
+      }
+    }
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop;
+    var height = (doc.scrollHeight - doc.clientHeight) || 1;
+    var pct = Math.min(100, Math.max(0, (scrollTop / height) * 100));
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = pct + '%';
+  }, { passive: true });
+
+  /* ===== REAL SCROLL REVEAL ===== */
+  (function() {
+    if ('IntersectionObserver' in window) {
+      revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    } else {
+      revealObserver = {
+        observe: function(el) { el.classList.add('visible'); }
+      };
+    }
+    triggerReveal();
+  })();
+
+  /* ===== ANIMATED STAT COUNTERS ===== */
+  (function() {
+    var counted = new WeakSet();
+    function animateCount(el) {
+      if (counted.has(el)) return;
+      counted.add(el);
+      var target = parseFloat(el.getAttribute('data-count'));
+      var suffix = el.getAttribute('data-suffix') || '';
+      var start = null;
+      var duration = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min(1, (ts - start) / duration);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if ('IntersectionObserver' in window) {
+      var statObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.stat-num[data-count]').forEach(function(el) { statObserver.observe(el); });
+    } else {
+      document.querySelectorAll('.stat-num[data-count]').forEach(animateCount);
+    }
+  })();
+
+  /* ===== CUSTOM CURSOR ===== */
+  (function() {
+    var dot = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    if (!dot || !ring || window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    var rx = 0, ry = 0, dx = 0, dy = 0;
+    window.addEventListener('mousemove', function(e) {
+      dx = e.clientX; dy = e.clientY;
+      dot.style.transform = 'translate(' + dx + 'px,' + dy + 'px) translate(-50%,-50%)';
+    });
+    function loop() {
+      rx += (dx - rx) * 0.18;
+      ry += (dy - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    }
+    loop();
+    document.addEventListener('mouseover', function(e) {
+      if (e.target.closest('a, button, .product-card, .gallery-item, .cocktail-card, .lang-toggle')) {
+        ring.classList.add('grow');
+      }
+    });
+    document.addEventListener('mouseout', function(e) {
+      if (e.target.closest('a, button, .product-card, .gallery-item, .cocktail-card, .lang-toggle')) {
+        ring.classList.remove('grow');
+      }
+    });
+  })();
+
+  /* ===== TILT EFFECT ON CARDS ===== */
+  (function() {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    document.querySelectorAll('.tilt-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width - 0.5;
+        var py = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'perspective(900px) rotateX(' + (py * -6) + 'deg) rotateY(' + (px * 8) + 'deg) translateZ(0)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+      });
+    });
+  })();
+
+  /* ===== LIGHTBOX CLOSE ===== */
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeMobile();
+    }
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrev();
+    }
+  });
+
+  /* ===== AGE GATE AUTO-BYPASS + HASH ROUTING ===== */
+  window.addEventListener('load', function() {
+    if (sessionStorage.getItem('ageVerified')) {
+      document.getElementById('agegate').classList.add('hidden');
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 2000);
+    }
+    var hash = location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+      _reallyGoTo(hash);
+    }
+  });
+
+  /* ===== BACK/FORWARD BROWSER NAVIGATION ===== */
+  window.addEventListener('popstate', function(e) {
+    if (e.state && e.state.page) {
+      var target = document.getElementById('page-' + e.state.page);
+      if (target) {
+        document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+        target.classList.add('active');
+        var navbar = document.getElementById('navbar');
+        if (e.state.page === 'home') {
+          navbar.classList.add('home-transparent');
+          navbar.classList.remove('scrolled');
+        } else {
+          navbar.classList.remove('home-transparent');
+          navbar.classList.remove('scrolled');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(triggerReveal, 100);
+      }
+    }
+  });
+</script>
+</body>
+</html>
